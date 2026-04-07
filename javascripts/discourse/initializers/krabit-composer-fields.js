@@ -62,14 +62,12 @@ export default {
         div.innerHTML = `
           <div class="krabit-field-row">
             <div class="krabit-field">
-              <label for="krabit-price">Price <span class="required-star">*</span></label>
-              <input type="number" id="krabit-price" placeholder="e.g. 5000" min="0" step="0.01" />
+              <input type="text" id="krabit-price"Price or Open to Offers" min="0" step="0.01" />
               <span class="krabit-field-error">Please enter a valid price.</span>
             </div>
             <div class="krabit-field">
-              <label for="krabit-url">URL <span class="required-star">*</span></label>
-              <input type="url" id="krabit-url" placeholder="https://example.com" />
-              <span class="krabit-field-error">Please enter a valid URL (include https://).</span>
+              <input type="text" id="krabit-url" placeholder="Link or Handle" />
+              <span class="krabit-field-error">Please enter a valid link.</span>
             </div>
           </div>
         `;
