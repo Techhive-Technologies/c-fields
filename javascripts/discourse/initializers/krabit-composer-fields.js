@@ -62,7 +62,7 @@ export default {
         div.innerHTML = `
           <div class="krabit-field-row">
             <div class="krabit-field">
-              <input type="text" id="krabit-price" placeholder="Price or Open to Offers" min=" />
+              <input type="text" id="krabit-price" placeholder="Price or Open to Offers" />
               <span class="krabit-field-error">Please enter a valid offer.</span>
             </div>
             <div class="krabit-field">
