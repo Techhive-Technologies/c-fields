@@ -1,0 +1,4 @@
+krabit_category_ids:
+  default: ""
+  type: string
+  description: "Comma-separated category IDs where Price and URL fields should appear (e.g. 7,12,23)"

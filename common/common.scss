@@ -1,0 +1,70 @@
+/* KRABIT Composer Fields - Styles */
+
+.krabit-composer-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 0;
+  border-top: 1px solid var(--primary-low);
+  margin-top: 8px;
+}
+
+.krabit-field-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.krabit-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+}
+
+.krabit-field label {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: var(--primary-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.krabit-field label .required-star {
+  color: var(--danger);
+  margin-left: 2px;
+}
+
+.krabit-field input {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid var(--primary-low);
+  border-radius: 6px;
+  font-size: 0.95em;
+  color: var(--primary);
+  background: var(--secondary);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+.krabit-field input:focus {
+  outline: none;
+  border-color: var(--tertiary);
+  box-shadow: 0 0 0 2px var(--tertiary-low);
+}
+
+.krabit-field input.krabit-error {
+  border-color: var(--danger);
+  box-shadow: 0 0 0 2px rgba(var(--danger-rgb, 255, 80, 80), 0.15);
+}
+
+.krabit-field-error {
+  font-size: 0.78em;
+  color: var(--danger);
+  margin-top: 2px;
+  display: none;
+}
+
+.krabit-field input.krabit-error + .krabit-field-error {
+  display: block;
+}
