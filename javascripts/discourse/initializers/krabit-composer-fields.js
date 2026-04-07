@@ -43,13 +43,18 @@ export default {
       function injectFields() {
         if (document.getElementById("krabit-composer-fields")) return;
 
-        // Insert AFTER the category chooser row
+        // Target the tags row specifically — fields go AFTER this
         const anchor =
-          document.querySelector("#reply-control .category-input") ||
-          document.querySelector("#reply-control .composer-fields .category-and-tags") ||
-          document.querySelector("#reply-control .composer-fields");
+          document.querySelector("#reply-control .tags-input") ||
+          document.querySelector("#reply-control .mini-tag-chooser") ||
+          document.querySelector("#reply-control .composer-fields .tag-chooser") ||
+          document.querySelector("#reply-control .category-and-tags") ||
+          document.querySelector("#reply-control .category-input");
 
         if (!anchor) return;
+
+        // Walk up to the containing row if needed
+        const insertAfter = anchor.closest(".composer-row, .category-and-tags, .category-input") || anchor;
 
         const div = document.createElement("div");
         div.id = "krabit-composer-fields";
@@ -69,8 +74,7 @@ export default {
           </div>
         `;
 
-        // Insert AFTER the category row
-        anchor.insertAdjacentElement("afterend", div);
+        insertAfter.insertAdjacentElement("afterend", div);
       }
 
       function checkAndToggle() {
