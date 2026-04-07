@@ -14,18 +14,6 @@ export default {
       }
 
       function getCurrentCategoryId() {
-        // Try multiple selectors Discourse uses across versions
-        const selectors = [
-          ".composer-fields .category-input input[type=hidden]",
-          "#reply-control input[name='categoryId']",
-          ".composer-popup input[name='categoryId']",
-        ];
-        for (const sel of selectors) {
-          const el = document.querySelector(sel);
-          if (el && el.value) return parseInt(el.value, 10);
-        }
-
-        // Fallback: read from Discourse app state
         try {
           const container = window.__container__ || Discourse.__container__;
           if (container) {
@@ -35,9 +23,7 @@ export default {
               if (catId) return parseInt(catId, 10);
             }
           }
-        } catch (e) {
-          // ignore
-        }
+        } catch (e) {}
         return null;
       }
 
@@ -57,12 +43,11 @@ export default {
       function injectFields() {
         if (document.getElementById("krabit-composer-fields")) return;
 
-        // Try all known anchor points across Discourse versions
+        // Insert AFTER the category chooser row
         const anchor =
-          document.querySelector(".title-input") ||
-          document.querySelector(".composer-fields .title") ||
-          document.querySelector("#reply-control .title-and-category") ||
-          document.querySelector("#reply-control .topic-title");
+          document.querySelector("#reply-control .category-input") ||
+          document.querySelector("#reply-control .composer-fields .category-and-tags") ||
+          document.querySelector("#reply-control .composer-fields");
 
         if (!anchor) return;
 
@@ -84,6 +69,7 @@ export default {
           </div>
         `;
 
+        // Insert AFTER the category row
         anchor.insertAdjacentElement("afterend", div);
       }
 
@@ -100,7 +86,6 @@ export default {
         }
       }
 
-      // Watch the entire DOM for composer open/close and category changes
       const observer = new MutationObserver(() => {
         checkAndToggle();
       });
@@ -112,7 +97,6 @@ export default {
         attributeFilter: ["class", "value"],
       });
 
-      // Also intercept save via the composer model
       api.modifyClass("model:composer", {
         pluginId: "krabit-composer-fields",
 

@@ -1,42 +1,45 @@
-/* KRABIT Composer Fields - Styles */
+/* KRABIT Composer Fields */
 
 .krabit-composer-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px 0;
-  border-top: 1px solid var(--primary-low);
-  margin-top: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--primary-low);
+  margin-bottom: 4px;
 }
 
 .krabit-field-row {
   display: flex;
   gap: 12px;
-  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .krabit-field {
   display: flex;
   flex-direction: column;
-  flex: 1;
+  flex: 1 1 0;
+  min-width: 0;
   gap: 4px;
+  box-sizing: border-box;
 }
 
 .krabit-field label {
-  font-size: 0.85em;
+  font-size: 0.82em;
   font-weight: 600;
   color: var(--primary-medium);
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
 
-.krabit-field label .required-star {
+.krabit-field .required-star {
   color: var(--danger);
   margin-left: 2px;
 }
 
 .krabit-field input {
   width: 100%;
+  box-sizing: border-box;
   padding: 7px 10px;
   border: 1px solid var(--primary-low);
   border-radius: 6px;
@@ -44,7 +47,6 @@
   color: var(--primary);
   background: var(--secondary);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
-  box-sizing: border-box;
 }
 
 .krabit-field input:focus {
@@ -55,16 +57,21 @@
 
 .krabit-field input.krabit-error {
   border-color: var(--danger);
-  box-shadow: 0 0 0 2px rgba(var(--danger-rgb, 255, 80, 80), 0.15);
 }
 
-.krabit-field-error {
+.krabit-field .krabit-field-error {
   font-size: 0.78em;
   color: var(--danger);
-  margin-top: 2px;
   display: none;
 }
 
-.krabit-field input.krabit-error + .krabit-field-error {
+.krabit-field input.krabit-error ~ .krabit-field-error {
   display: block;
+}
+
+/* Stack on small screens */
+@media (max-width: 600px) {
+  .krabit-field-row {
+    flex-direction: column;
+  }
 }
